@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قالب ستاند Tapio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#f6f4ef;--panel:#fff;--ink:#1d1a15;--muted:#6b6458;--line:#ddd6c8;--btn:#1d1a15;--btnink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17140f;--panel:#201c15;--ink:#f3ecdc;--muted:#a69d8b;--line:#3a3328;--btn:#d9b44a;--btnink:#1d1a15}}
+:root[data-theme="dark"]{--bg:#17140f;--panel:#201c15;--ink:#f3ecdc;--muted:#a69d8b;--line:#3a3328;--btn:#d9b44a;--btnink:#1d1a15}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal",Tahoma,sans-serif;line-height:1.6}
+main{max-width:460px;margin:0 auto;padding:20px 16px 40px}
+h1{font-family:"Reem Kufi",Tahoma,serif;font-size:26px;margin:4px 0 2px}
+.sub{margin:0 0 18px;color:var(--muted);font-size:15px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:12px}
+label{display:grid;gap:5px;font-size:14px;font-weight:500}
+input[type=text],input[type=url]{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:16px}
+input[type=url]{direction:ltr;text-align:left}
+input:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid #d9b44a;outline-offset:2px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.sw[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 2px var(--panel) inset}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{flex:1;padding:9px;border:0;background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--btn);color:var(--btnink);font-weight:700}
+.file{padding:10px 12px;border:1px dashed var(--line);border-radius:10px;text-align:center;cursor:pointer;font-size:14px;color:var(--muted)}
+.file input{display:none}
+.stage{margin:22px 0 0}
+.scene{border-radius:18px;padding:30px 14px 26px;background:radial-gradient(120% 80% at 50% 0%,#4d453a 0%,#27231d 60%,#171410 100%);display:flex;flex-direction:column;align-items:center}
+.acr{position:relative;width:100%;max-width:312px;padding:7px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.36),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),5px 0 0 -1px rgba(190,210,220,.3),0 28px 34px -14px rgba(0,0,0,.7)}
+.acr:after{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;background:linear-gradient(112deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 26%,rgba(255,255,255,0) 58%,rgba(255,255,255,.12) 66%,rgba(255,255,255,0) 67%)}
+.base{width:84%;max-width:262px;height:16px;margin-top:-1px;border-radius:2px 2px 12px 12px;background:linear-gradient(rgba(255,255,255,.42),rgba(255,255,255,.1));border:1px solid rgba(255,255,255,.4);box-shadow:0 16px 18px -8px rgba(0,0,0,.75)}
+.stand{width:100%;min-height:452px;border-radius:15px;padding:22px 16px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;background:var(--s-bg);color:var(--s-ink)}
+.stand.d{--s-bg:#14110d;--s-ink:#f3ecdc;--s-soft:#b9ae97;--s-card:#fff}
+.stand.l{--s-bg:#faf7f0;--s-ink:#1d1a15;--s-soft:#6b6458;--s-card:#fff}
+.stand:before{content:"";position:absolute;inset:7px;border:1px solid var(--ac);border-radius:10px;opacity:.6;pointer-events:none}
+.logo{width:68px;height:68px;border-radius:50%;border:2px solid var(--ac);display:grid;place-items:center;overflow:hidden;background:var(--s-card);flex:none}
+.logo img{width:100%;height:100%;object-fit:cover}
+.logo span{font-family:"Reem Kufi",serif;color:#14110d;font-size:26px}
+.nm{font-family:"Reem Kufi",Tahoma,serif;font-size:26px;line-height:1.2;margin:9px 0 1px;color:var(--ac);word-break:break-word}
+.l .nm{color:var(--s-ink)}
+.tg{font-size:13.5px;color:var(--s-soft);margin:0}
+.dv{width:44px;height:2px;border-radius:2px;background:var(--ac);margin:10px 0 12px}
+.qrbox{background:#fff;padding:8px;border-radius:12px;border:2px solid var(--ac);width:150px;height:150px;display:grid;place-items:center;flex:none}
+.qrbox img,.qrbox canvas{width:100%!important;height:100%!important;display:block}
+.tap{display:flex;gap:7px;align-items:center;margin:11px 0 0;font-weight:700;font-size:14px}
+.tap svg{width:20px;height:20px;fill:none;stroke:var(--ac);stroke-width:1.8;stroke-linecap:round}
+.l .tap svg{stroke:var(--s-ink)}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px 2px;width:100%;margin:13px 0 12px}
+.it{display:grid;justify-items:center;gap:3px}
+.it i{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ac);display:grid;place-items:center;color:var(--ac)}
+.l .it i{color:var(--s-ink)}
+.it svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.it b{font-size:10.5px;font-weight:500;line-height:1.3;color:var(--s-ink)}
+.ft{margin-top:auto;font-size:11px;color:var(--s-soft);direction:ltr;letter-spacing:.04em}
+.tgl{display:flex;flex-wrap:wrap;gap:6px}
+.tgl button{padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13.5px;cursor:pointer}
+.tgl button[aria-pressed=true]{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.note{margin:14px 0 0;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+<h1>قالب ستاند Tapio</h1>
+<p class="sub">اكتب بيانات المحل، والتصميم يتغير قدامك. صوّر الشاشة وابعته للعميل.</p>
+
+<section class="panel" aria-label="بيانات المحل">
+<label>اسم المحل<input type="text" id="name" value="الدربوكة" autocomplete="off"></label>
+<label>سطر تعريفي<input type="text" id="tag" value="كافيه وشيشة" autocomplete="off"></label>
+<label>لينك الصفحة (يتحول لـ QR)<input type="url" id="url" value="https://tapio.example/daraboka" autocomplete="off"></label>
+<div>
+<div style="font-size:14px;font-weight:500;margin-bottom:6px">لون الإطار والتفاصيل</div>
+<div class="row" id="sws"></div>
+</div>
+<div class="seg" role="group" aria-label="نمط الستاند">
+<button type="button" id="bd" aria-pressed="true">غامق</button>
+<button type="button" id="bl" aria-pressed="false">فاتح</button>
+</div>
+<div>
+<div style="font-size:14px;font-weight:500;margin-bottom:6px">اللي يظهر على الستاند</div>
+<div class="tgl" id="tgl"></div>
+</div>
+<label class="file">ارفع لوجو المحل<input type="file" id="lg" accept="image/*"></label>
+</section>
+
+<div class="stage"><div class="scene">
+<div class="acr"><div class="stand d" id="stand" style="--ac:#d9b44a">
+<div class="logo" id="logo"><span id="ini">د</span></div>
+<div class="nm" id="pn">الدربوكة</div>
+<p class="tg" id="pt">كافيه وشيشة</p>
+<div class="dv"></div>
+<div class="qrbox" id="qr"></div>
+<div class="tap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8.5a5 5 0 0 1 0 7M11.5 6a8.5 8.5 0 0 1 0 12M15 3.5a12 12 0 0 1 0 17"/></svg>قرّب موبايلك أو امسح الكود</div>
+<div class="chips" id="chips"></div>
+<div class="ft">Powered by Tapio</div>
+</div></div>
+<div class="base"></div>
+</div></div>
+<p class="note">المعاينة على أكريليك شفاف. المقاس المقترح للطباعة: A6 (10.5×14.8 سم)، سمك 3 مم، طباعة UV. بدّل اللينك بلينك العميل الحقيقي قبل ما تبعت أو تطبع.</p>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var stand=$('stand'),colors=['#d9b44a','#c0392b','#2e8b72','#2f6fd0','#8e5bd1','#e07b39'];
+var sw=$('sws');
+colors.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.className='sw';b.style.background=c;b.setAttribute('aria-label','لون '+(i+1));b.setAttribute('aria-pressed',i===0?'true':'false');
+b.onclick=function(){stand.style.setProperty('--ac',c);[].forEach.call(sw.children,function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true')};sw.appendChild(b)});
+function txt(){var n=$('name').value.trim()||'اسم المحل';$('pn').textContent=n;$('pt').textContent=$('tag').value.trim();var s=$('ini');if(s)s.textContent=n.charAt(0)}
+function qr(){var el=$('qr');el.innerHTML='';var u=$('url').value.trim()||'https://tapio.example';
+try{new QRCode(el,{text:u,width:200,height:200,correctLevel:QRCode.CorrectLevel.M})}catch(e){el.textContent='QR'}}
+$('name').oninput=txt;$('tag').oninput=txt;$('url').oninput=qr;
+function theme(d){stand.className='stand '+(d?'d':'l');$('bd').setAttribute('aria-pressed',d);$('bl').setAttribute('aria-pressed',!d)}
+$('bd').onclick=function(){theme(true)};$('bl').onclick=function(){theme(false)};
+$('lg').onchange=function(e){var f=e.target.files&&e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var l=$('logo');l.innerHTML='';var im=new Image();im.alt='لوجو';im.src=r.result;l.appendChild(im)};r.readAsDataURL(f)};
+var IC=[
+['menu','المنيو','<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6"/>'],
+['pay','انستاباي','<rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10h18M7 15h4"/>'],
+['gr','تقييم جوجل','<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.6l1-5.8L3.5 9.7l5.9-.8z"/>'],
+['wa','واتساب','<path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8z"/><path d="M9.5 9.5c.3 2 2 3.7 4 4l1.2-1.2-1.7-1-.8.6c-.7-.3-1.3-.9-1.6-1.6l.6-.8-1-1.7z"/>'],
+['ig','انستجرام','<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r=".6"/>'],
+['fb','فيسبوك','<path fill="currentColor" stroke="none" d="M14.5 20v-7h2.4l.4-3h-2.8V8.3c0-.8.3-1.3 1.4-1.3h1.5V4.3C17 4.2 16.2 4 15.2 4 13 4 11.5 5.3 11.5 7.7V10H9v3h2.5v7z"/>'],
+['tt','تيك توك','<path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.3 2.2 1.7 3.7 4 4"/>'],
+['map','الموقع','<path d="M12 21s6-5.5 6-10.5a6 6 0 0 0-12 0C6 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>']
+];
+var on={};IC.forEach(function(x){on[x[0]]=true});
+function chips(){var h='';IC.forEach(function(x){if(on[x[0]])h+='<div class="it"><i><svg viewBox="0 0 24 24" aria-hidden="true">'+x[2]+'</svg></i><b>'+x[1]+'</b></div>'});$('chips').innerHTML=h}
+var tg=$('tgl');IC.forEach(function(x){var b=document.createElement('button');b.type='button';b.textContent=x[1];b.setAttribute('aria-pressed','true');b.onclick=function(){on[x[0]]=!on[x[0]];b.setAttribute('aria-pressed',on[x[0]]);chips()};tg.appendChild(b)});
+chips();
+txt();window.addEventListener('load',qr);qr();
+})();
+</script>
+</body>
+</html>
